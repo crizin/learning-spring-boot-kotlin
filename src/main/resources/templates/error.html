@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout}">
+<body>
+<section layout:fragment="content">
+    <div class="jumbotron spacer-2">
+        <h1 class="display-3" th:text="${errorTitle}">Error title</h1>
+        <p class="lead" th:text="${errorDetails}">Error details</p>
+        <hr class="m-y-2">
+        <p class="lead">
+            <a class="btn btn-primary btn-lg" th:href="@{/}" role="button">Back to site home</a>
+        </p>
+    </div>
+</section>
+</body>
+</html>

@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping
 @Controller
 class DefaultController(
 		private val noteService: NoteService
-) {
+) : AbstractController() {
 	@GetMapping("/")
 	fun index(model: Model, @PageableDefault(sort = ["id"], direction = Sort.Direction.DESC) pageable: Pageable): String {
 		model.addAttribute("notes", noteService.getAllNotes(pageable))
