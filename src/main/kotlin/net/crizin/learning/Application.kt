@@ -19,11 +19,10 @@ import org.thymeleaf.spring5.SpringTemplateEngine
 @EnableTransactionManagement
 class Application : WebMvcConfigurer {
 	@Bean
-	fun templateEngine(): TemplateEngine {
-		val templateEngine = SpringTemplateEngine()
-		templateEngine.addDialect(LayoutDialect())
-		return templateEngine
-	}
+	fun templateEngine(): TemplateEngine =
+			SpringTemplateEngine().apply {
+				addDialect(LayoutDialect())
+			}
 
 	override fun addInterceptors(registry: InterceptorRegistry) {
 		registry

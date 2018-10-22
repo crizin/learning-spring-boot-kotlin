@@ -1,6 +1,7 @@
 package net.crizin.learning.controller
 
 import org.slf4j.LoggerFactory
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.web.servlet.error.ErrorAttributes
 import org.springframework.boot.web.servlet.error.ErrorController
 import org.springframework.core.annotation.AnnotationUtils
@@ -18,10 +19,11 @@ import javax.servlet.http.HttpServletResponse
 
 @Controller
 @ControllerAdvice
-class ErrorController(
-		private val errorAttributes: ErrorAttributes
-) : AbstractController(), ErrorController {
+class ErrorController : AbstractController(), ErrorController {
 	private val logger = LoggerFactory.getLogger(javaClass)
+
+	@Autowired
+	private lateinit var errorAttributes: ErrorAttributes
 
 	@ExceptionHandler(Exception::class)
 	fun handleError(request: HttpServletRequest, response: HttpServletResponse, exception: Exception): ModelAndView {

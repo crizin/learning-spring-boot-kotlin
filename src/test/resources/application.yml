@@ -1,0 +1,9 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:spring
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+
+attachment:
+  path: /tmp

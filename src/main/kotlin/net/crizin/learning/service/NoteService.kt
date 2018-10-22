@@ -7,6 +7,7 @@ import net.crizin.learning.repository.NoteRepository
 import net.crizin.learning.repository.TagRepository
 import org.apache.commons.lang3.StringUtils
 import org.slf4j.LoggerFactory
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
@@ -21,15 +22,18 @@ import java.nio.file.Paths
 import java.util.*
 
 @Service
-class NoteService(
-		private val noteRepository: NoteRepository,
-		private val tagRepository: TagRepository
-) {
+class NoteService {
 	private val logger = LoggerFactory.getLogger(javaClass)
 	private val maxTagCount = 10
 
+	@Autowired
+	private lateinit var noteRepository: NoteRepository
+
+	@Autowired
+	private lateinit var tagRepository: TagRepository
+
 	@Value("\${attachment.path}")
-	private val attachmentPath: String? = null
+	private lateinit var attachmentPath: String
 
 	@Transactional
 	fun upsertNote(note: Note): Note {
@@ -69,7 +73,6 @@ class NoteService(
 	@Transactional
 	fun convertTags(tags: Sequence<String>): Set<Tag> {
 		val filteredTags = tags
-				.asSequence()
 				.map { StringUtils.trimToNull(it) }
 				.filterNotNull()
 				.sorted()

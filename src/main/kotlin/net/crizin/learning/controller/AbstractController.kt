@@ -12,12 +12,11 @@ abstract class AbstractController {
 	protected fun getErrorModelAndView(response: HttpServletResponse, httpStatus: HttpStatus, errorMessage: String?): ModelAndView {
 		response.status = httpStatus.value()
 
-		val modelAndView = ModelAndView()
-		modelAndView.addObject("errorTitle", "${httpStatus.value()} ${httpStatus.reasonPhrase}")
-		modelAndView.addObject("errorDetails", errorMessage)
-		modelAndView.viewName = "error"
-
-		return modelAndView
+		return ModelAndView().apply {
+			addObject("errorTitle", "${httpStatus.value()} ${httpStatus.reasonPhrase}")
+			addObject("errorDetails", errorMessage)
+			viewName = "error"
+		}
 	}
 
 	protected fun respondJsonOk(): Map<String, Any> = mapOf("success" to true)

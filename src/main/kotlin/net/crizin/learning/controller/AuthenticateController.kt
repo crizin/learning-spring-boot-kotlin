@@ -4,6 +4,7 @@ import net.crizin.learning.entity.Member
 import net.crizin.learning.security.AuthenticationUser
 import net.crizin.learning.service.MemberService
 import org.apache.commons.lang3.StringUtils
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.dao.DataIntegrityViolationException
 import org.springframework.security.authentication.AuthenticationManager
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
@@ -16,10 +17,13 @@ import org.springframework.web.bind.annotation.RequestParam
 import javax.servlet.http.HttpServletRequest
 
 @Controller
-class AuthenticateController(
-		private val authenticationManager: AuthenticationManager,
-		private val memberService: MemberService
-) : AbstractController() {
+class AuthenticateController : AbstractController() {
+	@Autowired
+	private lateinit var authenticationManager: AuthenticationManager
+
+	@Autowired
+	private lateinit var memberService: MemberService
+
 	@GetMapping("/log-in")
 	fun logIn(model: Model, @RequestParam(required = false) error: String?): String {
 		if (error != null) {

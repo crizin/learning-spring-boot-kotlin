@@ -61,5 +61,6 @@ dependencies {
     implementation("nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect:2.3.0")
     implementation("org.thymeleaf.extras:thymeleaf-extras-springsecurity5:3.0.3.RELEASE")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
+    testImplementation("org.springframework.security:spring-security-test")
     testImplementation("com.h2database:h2")
 }

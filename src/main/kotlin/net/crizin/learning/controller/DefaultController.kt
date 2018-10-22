@@ -5,6 +5,7 @@ import net.crizin.learning.exception.UnauthorizedOperation
 import net.crizin.learning.exception.UnknownResourceException
 import net.crizin.learning.service.NoteService
 import org.apache.commons.lang3.StringUtils
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.domain.Pageable
 import org.springframework.data.domain.Sort
 import org.springframework.data.web.PageableDefault
@@ -18,9 +19,10 @@ import java.time.LocalDateTime
 import javax.servlet.http.HttpServletRequest
 
 @Controller
-class DefaultController(
-		private val noteService: NoteService
-) : AbstractController() {
+class DefaultController : AbstractController() {
+	@Autowired
+	lateinit var noteService: NoteService
+
 	@GetMapping("/")
 	fun index(model: Model, @PageableDefault(sort = ["id"], direction = Sort.Direction.DESC) pageable: Pageable): String {
 		model.addAttribute("notes", noteService.getAllNotes(pageable))
