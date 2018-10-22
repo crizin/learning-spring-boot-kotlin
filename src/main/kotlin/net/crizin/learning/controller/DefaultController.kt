@@ -22,10 +22,6 @@ class DefaultController(
 ) : AbstractController() {
 	@GetMapping("/")
 	fun index(model: Model, @PageableDefault(sort = ["id"], direction = Sort.Direction.DESC) pageable: Pageable): String {
-		if (true) {
-			throw NullPointerException("haha")
-		}
-
 		model.addAttribute("notes", noteService.getAllNotes(pageable))
 
 		return "index"
