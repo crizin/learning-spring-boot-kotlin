@@ -4,6 +4,7 @@ import net.crizin.learning.entity.Note
 import net.crizin.learning.exception.UnauthorizedOperation
 import net.crizin.learning.exception.UnknownResourceException
 import net.crizin.learning.service.NoteService
+import org.apache.commons.lang3.StringUtils
 import org.springframework.data.domain.Pageable
 import org.springframework.data.domain.Sort
 import org.springframework.data.web.PageableDefault
@@ -96,7 +97,7 @@ class DefaultController(
 			note = note.copy(updatedAt = LocalDateTime.now())
 		}
 
-		note = note.copy(title = title.trim(), content = content.trim())
+		note = note.copy(title = StringUtils.trimToNull(title), content = content.trim())
 
 		if (tags == null) {
 			note = note.copy(tags = sortedSetOf())

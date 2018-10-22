@@ -2,6 +2,10 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout}">
 <body>
 <section layout:fragment="content">
+    <div class="mt-2">
+        <h1><strong th:text="'#' + ${tag.name}">#Tag</strong> notes</h1>
+    </div>
+
     <div class="alert alert-success mt-2" th:if="${notes.numberOfElements == 0}">No notes.</div>
 
     <table id="note-list" class="table table-hover table-sm mt-2">

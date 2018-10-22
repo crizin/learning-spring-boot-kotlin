@@ -10,26 +10,6 @@ body {
     text-align: center;
 }
 
-.spacer-1 {
-    margin-top: 10px;
-}
-
-.spacer-2 {
-    margin-top: 20px;
-}
-
-.spacer-3 {
-    margin-top: 30px;
-}
-
-.spacer-4 {
-    margin-top: 40px;
-}
-
-.spacer-5 {
-    margin-top: 50px;
-}
-
 .text-ellipsis {
     overflow: hidden;
     text-overflow: ellipsis;

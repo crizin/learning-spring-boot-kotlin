@@ -1,25 +1,27 @@
 <!doctype html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout}">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:sec="http://www.springframework.org/schema/security" layout:decorate="~{layout}">
 <body>
 <section layout:fragment="content">
+    <div class="mt-2">
+        <a th:href="@{/note/write}" class="btn btn-success float-right"><span class="fa fa-plus"></span> Add note</a>
+        <h1><strong sec:authentication="name">UserName</strong>'s notes</h1>
+    </div>
+
     <div class="alert alert-success mt-2" th:if="${notes.numberOfElements == 0}">No notes.</div>
 
     <table id="note-list" class="table table-hover table-sm mt-2">
         <colgroup>
-            <col class="col-writer">
             <col class="col-title-content">
             <col class="col-created-at">
         </colgroup>
         <thead class="sr-only">
         <tr>
-            <th>Writer</th>
             <th>Title and content</th>
             <th>Created</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="note : ${notes}">
-            <td class="text-ellipsis text-left" th:text="${note.member.userName}">Someone</td>
             <td class="title-content text-ellipsis text-left">
                 <a th:href="@{/note/{noteId}(noteId=${note.id})}">
                     <span th:text="${note.title}">Title</span>

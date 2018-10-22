@@ -9,23 +9,20 @@
 <body>
 <div class="container">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">Navbar</a>
+        <a class="navbar-brand" th:href="@{/}">Home</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link active" th:href="@{/}">Home</a>
-                </li>
                 <li class="nav-item" sec:authorize-url="/note">
                     <a class="nav-item nav-link" th:href="@{/note}">My Notes</a>
                 </li>
             </ul>
-            <form class="form-inline my-2 my-lg-0" sec:authorize="isAnonymous()">
-                <a class="btn btn-outline-success my-2 my-sm-0" th:href="@{/log-in}">Log in</a>
+            <form class="form-inline" sec:authorize="isAnonymous()">
+                <a class="btn btn-outline-success" th:href="@{/log-in}">Log in</a>
             </form>
-            <form class="form-inline my-2 my-lg-0" method="post" th:action="@{/log-out}" sec:authorize="isAuthenticated()">
+            <form class="form-inline" method="post" th:action="@{/log-out}" sec:authorize="isAuthenticated()">
                 <button type="submit" class="btn btn-outline-success my-2 my-sm-0">Log out</button>
             </form>
         </div>
@@ -36,5 +33,6 @@
 <script th:src="@{/webjars/jquery/3.3.1/jquery.min.js}"></script>
 <script th:src="@{/webjars/popper.js/1.14.4/umd/popper.min.js}"></script>
 <script th:src="@{/webjars/bootstrap/4.1.3/js/bootstrap.min.js}"></script>
+<div layout:fragment="script"></div>
 </body>
 </html>

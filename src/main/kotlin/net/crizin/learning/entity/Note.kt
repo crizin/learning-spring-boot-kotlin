@@ -13,8 +13,8 @@ data class Note(
 		@ManyToOne(optional = false)
 		val member: Member,
 
-		@Column(nullable = false)
-		val title: String = "",
+		@Column
+		val title: String? = null,
 
 		@Lob
 		@Column(nullable = false)
@@ -34,4 +34,6 @@ data class Note(
 	fun isWriter(member: Member?): Boolean {
 		return member?.id == this.member.id
 	}
+
+	fun getTagString(): String = tags.asSequence().map { it.name }.sorted().joinToString(", ")
 }
