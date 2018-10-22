@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse
 abstract class AbstractController {
 	protected fun getCurrentMember(request: HttpServletRequest): Member = request.getAttribute("currentMember") as Member
 
-	protected fun getErrorModelAndView(response: HttpServletResponse, httpStatus: HttpStatus, errorMessage: String): ModelAndView {
+	protected fun getErrorModelAndView(response: HttpServletResponse, httpStatus: HttpStatus, errorMessage: String?): ModelAndView {
 		response.status = httpStatus.value()
 
 		val modelAndView = ModelAndView()

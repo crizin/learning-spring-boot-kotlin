@@ -14,20 +14,24 @@ data class Note(
 		val member: Member,
 
 		@Column(nullable = false)
-		val title: String,
+		val title: String = "",
 
 		@Lob
 		@Column(nullable = false)
-		val content: String,
+		val content: String = "",
 
 		@OrderBy("name ASC")
 		@ManyToMany(fetch = FetchType.EAGER)
 		val tags: Set<Tag> = TreeSet(),
 
-		val imagePath: String?,
+		val imagePath: String? = null,
 
 		@Column(nullable = false)
 		val createdAt: LocalDateTime = LocalDateTime.now(),
 
 		val updatedAt: LocalDateTime? = null
-)
+) {
+	fun isWriter(member: Member?): Boolean {
+		return member?.id == this.member.id
+	}
+}

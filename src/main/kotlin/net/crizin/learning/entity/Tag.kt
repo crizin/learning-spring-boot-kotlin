@@ -10,4 +10,8 @@ data class Tag(
 
 		@Column(nullable = false, unique = true)
 		val name: String
-)
+) : Comparable<Tag> {
+	override fun compareTo(other: Tag): Int {
+		return compareValuesBy(this, other) { it.name }
+	}
+}
