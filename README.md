@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/crizin/learning-spring-boot-kotlin.svg?branch=master)](https://travis-ci.org/crizin/learning-spring-boot-kotlin)
+
 # What's this?
 
 An example project for learning Spring Boot with Kotlin
